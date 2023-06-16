@@ -1,13 +1,4 @@
-# NODE TG BOT TUTORIAL | WEATHER
-
-Обучающий пример Telegram [bot](https://t.me/atom_baytovich) по определению погоды с меcтоположения человека. 
-
-[Сервис бесплатного API погоды](https://github.com/open-meteo/open-meteo)
-
-[База данных MONGO](https://www.mongodb.com/)
-
-[Node.js(версия 16.13.0)](https://nodejs.org/en/)
-
+# NODE TG BOT
 
 ## Установка
 
