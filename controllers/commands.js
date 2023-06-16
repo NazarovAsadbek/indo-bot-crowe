@@ -7,20 +7,14 @@ const {
 
 const start = (ctx) =>
     ctx.reply(`
-        ❤️ Привет, ${ctx.update.message.from.first_name}! 
-    ❔ Я бот - погодник, помогу узнать быстро погоду по твоему местоположению
-        
-    🥷 Твои данные никуда не утекут. Мне всё равно кто ты и откуда 💋
-        
-    🖥 Используй кнопки для навигации со мной 
-    `, {
+        Привет, ${ctx.update.message.from.first_name}!`, {
         disable_web_page_preview: true,
         parse_mode: 'HTML',
         ...mainMenu
     });
 
 const backMenu = ctx => {
-    ctx.reply(`✅ Ты находишься в меню`, {
+    ctx.reply(`Ты находишься в меню`, {
         disable_web_page_preview: true,
         parse_mode: 'HTML',
         ...mainMenu
@@ -39,6 +33,7 @@ const startWhatWeather = ctx => {
 };
 
 const whatWeatherNotI = ctx => ctx.scene.enter('weatherNotI');
+const sendFile = ctx => ctx.scene.enter('sendFile');
 
 const exampleStartCallback = (ctx) =>
     ctx.reply('😳 Прислали сообщение с inline-keyboard и callback button.\nОна ведёт на сцену "weatherNotI"', {
@@ -49,6 +44,7 @@ const exampleStartCallback = (ctx) =>
 module.exports = {
     start,
     backMenu,
+    sendFile,
     startWhatWeather,
     whatWeatherNotI,
     exampleStartCallback

@@ -11,6 +11,7 @@ const { setupBot } = require('./bot');
 (async function () {
     try {
         // подключение к БД
+        mongoose.set('strictQuery', false);
         await mongoose.connect(process.env.BD_TOKEN, {
             useUnifiedTopology: true,
             useNewUrlParser: true,

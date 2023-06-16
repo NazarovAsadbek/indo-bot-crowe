@@ -8,21 +8,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AtomBaytovich/weather_bot_tg.git"
+    "url": "git+https://github.com/NazarovAsadbek/indo-bot-crowe.git"
   },
   "author": "Atom Baytovich",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/AtomBaytovich/weather_bot_tg/issues"
+    "url": "https://github.com/NazarovAsadbek/indo-bot-crowe/issues"
   },
-  "homepage": "https://github.com/AtomBaytovich/weather_bot_tg#readme",
+  "homepage": "https://github.com/NazarovAsadbek/indo-bot-crowe#readme",
   "dependencies": {
-    "axios": "^0.27.2",
-    "canvas": "^2.9.3",
-    "chartjs-node-canvas": "^4.1.6",
-    "dotenv": "^16.0.1",
-    "moment": "^2.29.4",
     "mongoose": "^6.5.2",
+    "axios": "^0.27.2",
+    "dotenv": "^16.0.1",
     "telegraf": "^4.8.6",
     "telegraf-session-mongoose": "^2.0.6"
   },

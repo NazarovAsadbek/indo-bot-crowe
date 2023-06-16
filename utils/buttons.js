@@ -1,11 +1,10 @@
 // кнопки для бота
-const { Markup } = require('telegraf');
-const { CMD_TEXT } = require('../config/consts');
+const {Markup} = require('telegraf');
+const {CMD_TEXT} = require('../config/consts');
 
 const mainMenu =
     Markup.keyboard([
-        [CMD_TEXT.weaterI],
-        [CMD_TEXT.weatherNotI]
+        [CMD_TEXT.authorization],
     ]).resize()
 
 const backButtonMenu =
@@ -13,23 +12,15 @@ const backButtonMenu =
         [CMD_TEXT.menu],
     ]).resize()
 
-const backButtonMenuAndLocation =
+const authButtonMenu =
     Markup.keyboard([
-        Markup.button.locationRequest('Мое местоположение'),
-        Markup.button.text(CMD_TEXT.menu),
-    ]).resize()
-
-const startCallbackButton =
-    Markup.inlineKeyboard([
-        Markup.button.callback(
-            'Старт',
-            'test_callback'
-        ),
+        [CMD_TEXT.registraion],
+        [CMD_TEXT.sendFiles],
+        [CMD_TEXT.menu],
     ]).resize()
 
 module.exports = {
     mainMenu,
     backButtonMenu,
-    backButtonMenuAndLocation,
-    startCallbackButton
+    authButtonMenu
 }
