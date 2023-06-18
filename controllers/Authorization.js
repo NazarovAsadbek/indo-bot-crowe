@@ -38,9 +38,15 @@ const stepTwo = Telegraf.on('text', async ctx => {
         const response = await axios.post(`https://2768-95-214-211-177.ngrok-free.app/api/TG/Authenticate?login=${ctx.scene.state.login}&password=${ctx.scene.state.password}`);
 
         if (response.status === 200) {
-            ctx.reply(`Вы успешно авторизировались ${response.data.login}${!!response.data.phoneNumber ? ", " + response.data.phoneNumber : ""}!`, {
-                ...authButtonMenu
-            })
+            if (!!response?.data?.isAdmin) {
+                ctx.reply(`Вы успешно авторизировались ${response.data.login}${!!response.data.phoneNumber ? ", " + response.data.phoneNumber : ""}!`, {
+                    ...authButtonMenu
+                })
+            } else {
+                ctx.reply(`Вы успешно авторизировались ${response.data.login}${!!response.data.phoneNumber ? ", " + response.data.phoneNumber : ""}!`, {
+                    ...mainMenu
+                })
+            }
         } else {
             throw Error('Произошла ошибка авторизации')
         }
