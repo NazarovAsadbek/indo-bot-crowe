@@ -33,6 +33,7 @@ const startWhatWeather = ctx => {
 };
 
 const authorization_wizard = ctx => ctx.scene.enter('authorization_wizard');
+const registration_wizard = ctx => ctx.scene.enter('registration_wizard');
 const sendFile = ctx => ctx.scene.enter('sendFile');
 
 const exampleStartCallback = (ctx) =>
@@ -47,5 +48,6 @@ module.exports = {
     sendFile,
     startWhatWeather,
     authorization_wizard,
+    registration_wizard,
     exampleStartCallback
 }
