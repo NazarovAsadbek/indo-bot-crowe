@@ -32,11 +32,11 @@ const startWhatWeather = ctx => {
     return ctx.scene.enter('weather');
 };
 
-const whatWeatherNotI = ctx => ctx.scene.enter('weatherNotI');
+const authorization_wizard = ctx => ctx.scene.enter('authorization_wizard');
 const sendFile = ctx => ctx.scene.enter('sendFile');
 
 const exampleStartCallback = (ctx) =>
-    ctx.reply('😳 Прислали сообщение с inline-keyboard и callback button.\nОна ведёт на сцену "weatherNotI"', {
+    ctx.reply('😳 Прислали сообщение с inline-keyboard и callback button.\nОна ведёт на сцену "authorization_wizzard"', {
         ...startCallbackButton
     })
 
@@ -46,6 +46,6 @@ module.exports = {
     backMenu,
     sendFile,
     startWhatWeather,
-    whatWeatherNotI,
+    authorization_wizard,
     exampleStartCallback
 }

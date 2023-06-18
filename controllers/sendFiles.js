@@ -1,5 +1,5 @@
 const {Telegraf, Scenes} = require('telegraf');
-const {CMD_TEXT} = require('../config/consts');
+const {CMD_TEXT, URL_API} = require('../config/consts');
 const {backMenu} = require('../controllers/commands');
 const axios = require("axios");
 
@@ -16,7 +16,8 @@ const stepOne = Telegraf.on('document', async ctx => {
         ctx.reply('Отправьте файл(ы)')
         // указываем state для следующего шага сцены
         ctx.scene.state.login = ctx.message.text;
-        const test = await axios.post('https://e159-94-158-55-115.ngrok-free.app/api/CRM/RegisterUser', {
+        const BASE_URL = URL_API
+        const test = await axios.post("https://2768-95-214-211-177.ngrok-free.app/api/TG/Authenticate", {
             "login": "asadbek",
             "password": "12345",
             "telegramUserId": "5673712208"
