@@ -16,7 +16,6 @@ const stepOne = Telegraf.on('document', async ctx => {
         ctx.reply('Отправьте файл(ы)')
         // указываем state для следующего шага сцены
         ctx.scene.state.login = ctx.message.text;
-        const BASE_URL = URL_API
         const test = await axios.post("https://2768-95-214-211-177.ngrok-free.app/api/TG/Authenticate", {
             "login": "asadbek",
             "password": "12345",

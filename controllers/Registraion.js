@@ -52,8 +52,8 @@ const stepThree = Telegraf.on('text', async ctx => {
             phoneNumber: ctx.scene.state.new_phone_number
         })
 
-        if (response.status === 200) {
-            ctx.reply(`Вы успешно зарегистрировали нового пользователя ${response.data.login}${!!response.data.phoneNumber ? ", " + response.data.phoneNumber : ""}!`, {
+        if (response?.status === 200) {
+            ctx.reply(`Вы успешно зарегистрировали нового пользователя ${response?.data?.login}${!!response?.data?.phoneNumber ? ", " + response?.data?.phoneNumber : ""}!`, {
                 ...authButtonMenu
             })
         } else {
@@ -62,7 +62,7 @@ const stepThree = Telegraf.on('text', async ctx => {
         // выходим со сцены
         ctx.scene.leave();
     } catch (e) {
-        ctx.reply(`Произошла ошибка при авторизации. Код: ${e.response.data.status}. Описание ошибки: ${e.response.data.title}. Пожалуйста повторите попытку!`, {
+        ctx.reply(`Произошла ошибка при авторизации. Код: ${e?.response?.data?.status}. Описание ошибки: ${e?.response?.data?.title}. Пожалуйста повторите попытку!`, {
             ...mainMenu
         })
     }

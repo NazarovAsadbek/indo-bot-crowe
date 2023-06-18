@@ -37,13 +37,13 @@ const stepTwo = Telegraf.on('text', async ctx => {
 
         const response = await axios.post(`https://2768-95-214-211-177.ngrok-free.app/api/TG/Authenticate?login=${ctx.scene.state.login}&password=${ctx.scene.state.password}`);
 
-        if (response.status === 200) {
+        if (response?.status === 200) {
             if (!!response?.data?.isAdmin) {
-                ctx.reply(`Вы успешно авторизировались ${response.data.login}${!!response.data.phoneNumber ? ", " + response.data.phoneNumber : ""}!`, {
+                ctx.reply(`Вы успешно авторизировались ${response?.data?.login}${!!response?.data?.phoneNumber ? ", " + response?.data?.phoneNumber : ""}!`, {
                     ...authButtonMenu
                 })
             } else {
-                ctx.reply(`Вы успешно авторизировались ${response.data.login}${!!response.data.phoneNumber ? ", " + response.data.phoneNumber : ""}!`, {
+                ctx.reply(`Вы успешно авторизировались ${response?.data?.login}${!!response?.data?.phoneNumber ? ", " + response?.data?.phoneNumber : ""}!`, {
                     ...mainMenu
                 })
             }
@@ -54,7 +54,7 @@ const stepTwo = Telegraf.on('text', async ctx => {
         ctx.scene.leave();
     } catch (e) {
         console.log(e)
-        ctx.reply(`Произошла ошибка при авторизации. Код: ${e.response.data.status}. Описание ошибки: ${e.response.data.title}. Пожалуйста повторите попытку!`, {
+        ctx.reply(`Произошла ошибка при авторизации. Код: ${e?.response?.data?.status}. Описание ошибки: ${e?.response?.data?.title}. Пожалуйста повторите попытку!`, {
             ...mainMenu
         })
     }
