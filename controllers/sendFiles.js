@@ -7,53 +7,35 @@ const axios = require("axios");
 const stepOne = Telegraf.on('document', async ctx => {
     try {
         const document = ctx.message;
-        const fromUserId = ctx.message.from.id;
-        console.log('file', document, fromUserId);
+        const fileUrl = await ctx.telegram.getFileLink(document.document.file_id)
+
         if (ctx.message.text === '/start') {
-            return ctx.scene.enter('sendFile');
+            return ctx.scene.enter('authorization_wizard');
         }
 
-        ctx.reply('Отправьте файл(ы)')
         // указываем state для следующего шага сцены
-        ctx.scene.state.login = ctx.message.text;
-        const test = await axios.post("https://2768-95-214-211-177.ngrok-free.app/api/TG/Authenticate", {
-            "login": "asadbek",
-            "password": "12345",
-            "telegramUserId": "5673712208"
-        })
-        console.log('test', test)
-        // говорим, чтобы перешёл к следующему шагу
-        ctx.wizard.next();
-    } catch (error) {
-        console.log(error)
-        ctx.reply('Упс... Произошла какая - то ошибка');
-    }
-});
-
-// второй шаг сцены
-const stepTwo = Telegraf.on('text', async ctx => {
-    try {
-        const msg = ctx.message;
-        const numberText = msg.text
-        if (numberText === '/start') {
-            return ctx.scene.enter('sendFile');
+        ctx.reply(`Файл (${document.document.file_name?.toString()?.split('.')[0]}) отправляеется... Пожалуйста подождите⌛️!`)
+        const response = await axios.post(`https://83f0-95-214-211-145.ngrok-free.app/api/TG/SendByAdmin2?url=${fileUrl}&fileName=${document.document.file_name}`)
+        if (response?.status === 200) {
+            ctx.reply(`Файл (${document.document.file_name}) успешно отправлен!`)
         }
-        // console.log('login', msg, numberText)
-
-        ctx.scene.state.password = numberText;
-        ctx.reply(`login="${ctx.scene.state.login}", password:"${ctx.scene.state.password}"`)
-        // выходим со сцены
+        // говорим, чтобы перешёл к следующему шагу
         ctx.scene.leave();
     } catch (error) {
-        console.log(error)
-        ctx.reply('Упс... Произошла какая - то ошибка');
+        if (error.response.data === 'User not found') {
+            const file_name = ctx.message.document.file_name.toString()?.split('.')
+
+            ctx.reply(`❌ Ошибка! Не найден пользователь с таким логином (${file_name[0]}) Статус: ${error.response.status}`);
+        } else {
+            ctx.reply(`❌ Ошибка! Неизвестная ошибка. Статус: ${error.response.status}`);
+        }
     }
 });
 
 // передаём конструктору название сцены и шаги сцен
-const sendFileScene = new Scenes.WizardScene('sendFile', stepOne, stepTwo)
+const sendFileScene = new Scenes.WizardScene('sendFile', stepOne)
 
-sendFileScene.enter(ctx => ctx.reply('Введите логин'));
+sendFileScene.enter(ctx => ctx.reply('Прикрепите файл(ы). Обратите внимание, название файла, должно быть логином пользователя, которому Вы хотите отправить файл'));
 
 // вешаем прослушку hears на сцену
 sendFileScene.hears(CMD_TEXT.menu, ctx => {

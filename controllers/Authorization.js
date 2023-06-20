@@ -35,7 +35,8 @@ const stepTwo = Telegraf.on('text', async ctx => {
 
         ctx.scene.state.password = numberText;
 
-        const response = await axios.post(`https://2768-95-214-211-177.ngrok-free.app/api/TG/Authenticate?login=${ctx.scene.state.login}&password=${ctx.scene.state.password}`);
+        ctx.reply('Пожалуйста подождите...⌛️ Проверяем Ваш логин и пароль!');
+        const response = await axios.post(`https://83f0-95-214-211-145.ngrok-free.app/api/TG/Authenticate?TGUserId=${msg.from.id}&login=${ctx.scene.state.login}&password=${ctx.scene.state.password}`);
 
         if (response?.status === 200) {
             if (!!response?.data?.isAdmin) {

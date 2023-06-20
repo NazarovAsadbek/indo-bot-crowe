@@ -45,8 +45,8 @@ const stepThree = Telegraf.on('text', async ctx => {
 
         ctx.scene.state.new_phone_number = numberText;
 
-        console.log("login:", ctx.scene.state.new_login, "password:", ctx.scene.state.new_password, "phonenumber:", ctx.scene.state.new_phone_number);
-        const response = await axios.post("https://2768-95-214-211-177.ngrok-free.app/api/TG/RegisterUser", {
+        ctx.reply('Пожалуйста подождите...⌛️');
+        const response = await axios.post("https://83f0-95-214-211-145.ngrok-free.app/api/TG/RegisterUser", {
             login: ctx.scene.state.new_login,
             password: ctx.scene.state.new_password,
             phoneNumber: ctx.scene.state.new_phone_number

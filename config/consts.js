@@ -8,6 +8,6 @@ const CMD_TEXT = {
 
 // эжкспортированныые константы проекта свободного доступа
 module.exports = {
-    URL_API: 'https://2768-95-214-211-177.ngrok-free.app',
+    URL_API: 'https://83f0-95-214-211-145.ngrok-free.app/',
     CMD_TEXT
 }
